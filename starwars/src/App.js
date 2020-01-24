@@ -3,6 +3,7 @@ import axios from "axios";
 import './App.css';
 import CharacterList from './components/Characters';
 
+
 const App = () => {
   // Try to think through what state you'll need for this app before starting. Then build out
   // the state properties here.
@@ -17,7 +18,7 @@ useEffect(()=> {
   axios.get("https://rickandmortyapi.com/api/character/")
   .then((response) => {
     setCharacters(response.data.results);
-    console.log(response.data.results)
+    console.log("this is stupid", response.data.results)
   })
   .catch(error => {
     console.log("No characters found", error)
@@ -27,14 +28,14 @@ useEffect(()=> {
   return (
     <div className="App">
       <h1 className="Header">React Wars</h1>
-       {
-        console.log(characters)
-      }
+      
       {
         characters.map((item) =>{
-          console.log(item)
+          // console.log(item)
           return(
-         <CharacterList person={item}/>
+         <CharacterList
+         key={item.created}
+         person={item}/>
           );
     })
   } 
@@ -42,14 +43,4 @@ useEffect(()=> {
   );
 }
 
-export default App;  {
-  console.log(characters)
-}
-{
-  characters.map((item) =>{
-    console.log(item)
-    return(
-   <CharacterList person={item}/>
-    );
-})
-} 
+export default App;  
